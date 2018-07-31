@@ -77,8 +77,7 @@ namespace SimpleBot
                 catch
                 {
                     continue; 
-                }
-               
+                }              
             }
         }
         
@@ -115,7 +114,7 @@ namespace SimpleBot
                     Console.WriteLine("\nMencari Pesan Baru...");
 
                     //klik pesan baru
-                    IList<IWebElement> unread = _driver.FindElements(By.XPath(UNREAD));//(By.XPath("//span[@class='im_dialog_badge badge']"));//(By.ClassName("im_dialog_badge_muted"));//
+                    IList<IWebElement> unread = _driver.FindElements(By.XPath(UNREAD));
                     foreach (IWebElement n in unread)
                     {
                         _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromMinutes(5);
@@ -127,7 +126,7 @@ namespace SimpleBot
                         //Console.WriteLine(stext.Text);
 
                         //loop show text
-                        IList<IWebElement> text = _driver.FindElements(By.ClassName(TEXT));//XPath("//div[@class='im_message_text'][contains(.,'')]"));//("//div[@class='im_message_text'][contains(text(),'')]"));
+                        IList<IWebElement> text = _driver.FindElements(By.ClassName(TEXT));
                         foreach (IWebElement t in text)
                         {
                             Console.Write(t.Text);
@@ -135,20 +134,16 @@ namespace SimpleBot
                         //kirim balasan                       
                         var balas = _driver.FindElement(By.ClassName(TEXTING));
                         balas.SendKeys(("\nPesan diterima @") + DateTime.Now.ToString("dd/MM/yyy HH:mm:ss") + Keys.Enter);
-                        //var klik = _driver.FindElement(By.XPath(BUTTON));
-                        //klik.Click();   
-
+                        
                         Console.WriteLine("\nBalas Pesan Sukses...");
 
                         break;
-                    }
-                   
+                    }                  
                 }
                 catch
                 {                   
                     continue;
-                }
-                
+                }                
             }
         }
     }
